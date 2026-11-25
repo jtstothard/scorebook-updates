@@ -1,0 +1,1652 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "number",
+      "const": 1
+    },
+    "serial": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "issued": {
+      "type": "string",
+      "pattern": "^\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+    },
+    "app": {
+      "type": "object",
+      "properties": {
+        "newest": {
+          "type": "string",
+          "pattern": "^\\d{1,4}\\.\\d{1,4}\\.\\d{1,4}$"
+        }
+      },
+      "required": [
+        "newest"
+      ],
+      "additionalProperties": false
+    },
+    "maps": {
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "number",
+                "const": 1
+              },
+              "game": {
+                "type": "string",
+                "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\+\\d{1,10}$"
+              },
+              "platform": {
+                "type": "string",
+                "const": "windows"
+              },
+              "minApp": {
+                "type": "string",
+                "pattern": "^\\d{1,4}\\.\\d{1,4}\\.\\d{1,4}$"
+              },
+              "save": {
+                "type": "object",
+                "properties": {
+                  "schemas": {
+                    "type": "object",
+                    "properties": {
+                      "summary": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "gameInfo": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "database": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "humans": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "matchStats": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      }
+                    },
+                    "required": [
+                      "summary",
+                      "gameInfo",
+                      "database",
+                      "humans",
+                      "matchStats"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "schemas"
+                ],
+                "additionalProperties": false
+              },
+              "live": {
+                "type": "object",
+                "properties": {
+                  "pluginSha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "roots": {
+                    "type": "object",
+                    "properties": {
+                      "clock": {
+                        "type": "integer",
+                        "minimum": 4096,
+                        "maximum": 1073741823,
+                        "multipleOf": 4
+                      },
+                      "roster": {
+                        "type": "integer",
+                        "minimum": 4096,
+                        "maximum": 1073741823,
+                        "multipleOf": 8
+                      },
+                      "playerType": {
+                        "type": "integer",
+                        "minimum": 4096,
+                        "maximum": 1073741823,
+                        "multipleOf": 8
+                      },
+                      "playerStaffType": {
+                        "type": "integer",
+                        "minimum": 4096,
+                        "maximum": 1073741823,
+                        "multipleOf": 8
+                      }
+                    },
+                    "required": [
+                      "clock",
+                      "roster",
+                      "playerType",
+                      "playerStaffType"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "staffShift": {
+                    "type": "integer",
+                    "minimum": 8,
+                    "maximum": 1024,
+                    "multipleOf": 8
+                  },
+                  "player": {
+                    "type": "object",
+                    "properties": {
+                      "season": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "team": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "positions": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2033,
+                        "multipleOf": 1
+                      },
+                      "value": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2044,
+                        "multipleOf": 4
+                      },
+                      "firstName": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "lastName": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "knownAs": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "nation": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "birthDate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2044,
+                        "multipleOf": 4
+                      },
+                      "contract": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "uid": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2044,
+                        "multipleOf": 4
+                      },
+                      "flags": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2047,
+                        "multipleOf": 1
+                      }
+                    },
+                    "required": [
+                      "season",
+                      "team",
+                      "positions",
+                      "firstName",
+                      "lastName",
+                      "knownAs",
+                      "birthDate",
+                      "uid",
+                      "flags"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "records": {
+                    "type": "object",
+                    "properties": {
+                      "season": {
+                        "type": "object",
+                        "properties": {
+                          "line": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "line"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "line": {
+                        "type": "object",
+                        "properties": {
+                          "detail": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 56,
+                            "multipleOf": 8
+                          },
+                          "ratingSum": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 62,
+                            "multipleOf": 2
+                          },
+                          "minutes": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 62,
+                            "multipleOf": 2
+                          },
+                          "starts": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "subs": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "rated": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "goals": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "assists": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "conceded": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "penaltiesTaken": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "penaltiesScored": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "playerOfTheMatch": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "reds": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "yellows": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "cleanSheets": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "ratingSum",
+                          "minutes",
+                          "starts",
+                          "subs",
+                          "rated"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "detail": {
+                        "type": "object",
+                        "properties": {
+                          "passesAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "passesCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "tacklesAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "tacklesCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "headersAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "headersWon": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "dribbles": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "foulsMade": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "foulsAgainst": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shots": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shotsOnTarget": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "mistakesLeadingToGoals": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "minutesSinceLastGoal": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "distance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "offsides": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesOpenPlayAttemptedOrSavesTipped": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesOpenPlayCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "keyPasses": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "keyTackles": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "interceptions": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "clearCutChances": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "blocks": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "possessionLost": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "possessionWon": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xg": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xa": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "clearances": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "freeKickShots": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesOpenPlayAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shotsOutsideBox": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xgPrevented": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "sprints": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "progressivePasses": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "keyPassesOpenPlay": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "npxg": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xgOverperformance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shotsBlocked": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "headersLost": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "penaltiesFaced": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "penaltiesSaved": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "contract": {
+                        "type": "object",
+                        "properties": {
+                          "wage": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "start": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "end": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "listed": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 255,
+                            "multipleOf": 1
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "team": {
+                        "type": "object",
+                        "properties": {
+                          "club": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          },
+                          "division": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "club",
+                          "division"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "club": {
+                        "type": "object",
+                        "properties": {
+                          "uid": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 508,
+                            "multipleOf": 4
+                          },
+                          "name": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 504,
+                            "multipleOf": 8
+                          },
+                          "nation": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 504,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "uid",
+                          "name"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "nation": {
+                        "type": "object",
+                        "properties": {
+                          "uid": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 124,
+                            "multipleOf": 4
+                          },
+                          "name": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 120,
+                            "multipleOf": 8
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "division": {
+                        "type": "object",
+                        "properties": {
+                          "uid": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "name": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "uid",
+                          "name"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "season",
+                      "line",
+                      "detail",
+                      "contract",
+                      "team",
+                      "club",
+                      "nation",
+                      "division"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "pluginSha256",
+                  "roots",
+                  "staffShift",
+                  "player",
+                  "records"
+                ],
+                "additionalProperties": false
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "steamBuild": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2147483647
+                  },
+                  "measured": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+                  },
+                  "evidence": {
+                    "minItems": 1,
+                    "maxItems": 8,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "record": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9._/#-]{1,200}$"
+                        },
+                        "report": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{64}$"
+                        }
+                      },
+                      "required": [
+                        "record"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "steamBuild",
+                  "measured",
+                  "evidence"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "format",
+              "game",
+              "platform",
+              "minApp",
+              "provenance"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "number",
+                "const": 1
+              },
+              "game": {
+                "type": "string",
+                "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\+\\d{1,10}$"
+              },
+              "platform": {
+                "type": "string",
+                "const": "macos"
+              },
+              "minApp": {
+                "type": "string",
+                "pattern": "^\\d{1,4}\\.\\d{1,4}\\.\\d{1,4}$"
+              },
+              "save": {
+                "type": "object",
+                "properties": {
+                  "schemas": {
+                    "type": "object",
+                    "properties": {
+                      "summary": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "gameInfo": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "database": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "humans": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "matchStats": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 65535
+                      }
+                    },
+                    "required": [
+                      "summary",
+                      "gameInfo",
+                      "database",
+                      "humans",
+                      "matchStats"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "schemas"
+                ],
+                "additionalProperties": false
+              },
+              "live": {
+                "type": "object",
+                "properties": {
+                  "pluginUuid": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{32}$"
+                  },
+                  "staffShift": {
+                    "type": "integer",
+                    "minimum": 8,
+                    "maximum": 1024,
+                    "multipleOf": 8
+                  },
+                  "player": {
+                    "type": "object",
+                    "properties": {
+                      "season": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "team": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "positions": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2033,
+                        "multipleOf": 1
+                      },
+                      "value": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2044,
+                        "multipleOf": 4
+                      },
+                      "firstName": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "lastName": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "knownAs": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "nation": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "birthDate": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2044,
+                        "multipleOf": 4
+                      },
+                      "contract": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "uid": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2044,
+                        "multipleOf": 4
+                      },
+                      "flags": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2047,
+                        "multipleOf": 1
+                      },
+                      "secondaryType": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      },
+                      "personType": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2040,
+                        "multipleOf": 8
+                      }
+                    },
+                    "required": [
+                      "season",
+                      "team",
+                      "positions",
+                      "firstName",
+                      "lastName",
+                      "knownAs",
+                      "birthDate",
+                      "contract",
+                      "uid",
+                      "flags",
+                      "secondaryType",
+                      "personType"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "records": {
+                    "type": "object",
+                    "properties": {
+                      "season": {
+                        "type": "object",
+                        "properties": {
+                          "line": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "line"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "line": {
+                        "type": "object",
+                        "properties": {
+                          "detail": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 56,
+                            "multipleOf": 8
+                          },
+                          "ratingSum": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 62,
+                            "multipleOf": 2
+                          },
+                          "minutes": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 62,
+                            "multipleOf": 2
+                          },
+                          "starts": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "subs": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "rated": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "goals": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "assists": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "conceded": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "penaltiesTaken": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "penaltiesScored": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "playerOfTheMatch": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "reds": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "yellows": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          },
+                          "cleanSheets": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 63,
+                            "multipleOf": 1
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "ratingSum",
+                          "minutes",
+                          "starts",
+                          "subs",
+                          "rated"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "detail": {
+                        "type": "object",
+                        "properties": {
+                          "passesAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "passesCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "tacklesAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "tacklesCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "headersAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "headersWon": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "dribbles": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "foulsMade": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "foulsAgainst": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shots": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shotsOnTarget": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "mistakesLeadingToGoals": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "minutesSinceLastGoal": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "distance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "offsides": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesOpenPlayAttemptedOrSavesTipped": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesOpenPlayCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "keyPasses": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "keyTackles": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "interceptions": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "clearCutChances": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "blocks": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "possessionLost": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "possessionWon": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xg": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xa": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "clearances": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "freeKickShots": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesOpenPlayAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shotsOutsideBox": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xgPrevented": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "sprints": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "progressivePasses": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "keyPassesOpenPlay": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "npxg": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "xgOverperformance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesAttempted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "crossesCompleted": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "shotsBlocked": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "headersLost": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "penaltiesFaced": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          },
+                          "penaltiesSaved": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 254,
+                            "multipleOf": 2
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "contract": {
+                        "type": "object",
+                        "properties": {
+                          "wage": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "start": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "end": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "listed": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 255,
+                            "multipleOf": 1
+                          }
+                        },
+                        "required": [
+                          "start",
+                          "end"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "team": {
+                        "type": "object",
+                        "properties": {
+                          "club": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          },
+                          "division": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "club",
+                          "division"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "club": {
+                        "type": "object",
+                        "properties": {
+                          "uid": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 508,
+                            "multipleOf": 4
+                          },
+                          "name": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 504,
+                            "multipleOf": 8
+                          },
+                          "nation": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 504,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "uid",
+                          "name"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "nation": {
+                        "type": "object",
+                        "properties": {
+                          "uid": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 124,
+                            "multipleOf": 4
+                          },
+                          "name": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 120,
+                            "multipleOf": 8
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "division": {
+                        "type": "object",
+                        "properties": {
+                          "uid": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 252,
+                            "multipleOf": 4
+                          },
+                          "name": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 248,
+                            "multipleOf": 8
+                          }
+                        },
+                        "required": [
+                          "uid",
+                          "name"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "season",
+                      "line",
+                      "detail",
+                      "contract",
+                      "team",
+                      "club",
+                      "nation",
+                      "division"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "pluginUuid",
+                  "staffShift",
+                  "player",
+                  "records"
+                ],
+                "additionalProperties": false
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "steamBuild": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2147483647
+                  },
+                  "measured": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+                  },
+                  "evidence": {
+                    "minItems": 1,
+                    "maxItems": 8,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "record": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9._/#-]{1,200}$"
+                        },
+                        "report": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{64}$"
+                        }
+                      },
+                      "required": [
+                        "record"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "steamBuild",
+                  "measured",
+                  "evidence"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "format",
+              "game",
+              "platform",
+              "minApp",
+              "provenance"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "needsApp": {
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "string",
+            "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\+\\d{1,10}$"
+          },
+          "minApp": {
+            "type": "string",
+            "pattern": "^\\d{1,4}\\.\\d{1,4}\\.\\d{1,4}$"
+          }
+        },
+        "required": [
+          "game",
+          "minApp"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "names": {
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "databaseVersion": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^\\d+\\.\\d+\\.\\d+\\+\\d+$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 268435456
+          }
+        },
+        "required": [
+          "databaseVersion",
+          "sha256",
+          "size"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "retiredKeys": {
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{16}$"
+      }
+    }
+  },
+  "required": [
+    "format",
+    "serial",
+    "issued",
+    "app",
+    "maps",
+    "needsApp",
+    "names",
+    "retiredKeys"
+  ],
+  "additionalProperties": false,
+  "title": "Version list, format 1",
+  "description": "The signed content of versions.json. Every object is closed. The app also refuses a slot that overlaps another or ends outside its object, repeated or unsorted maps, a repeated plug-in pin, and a game listed both with a map and as needing a newer app."
+}
